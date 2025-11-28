@@ -1,5 +1,10 @@
-all_lines <- readLines("D:/UPM/PLN/Practica_grupal/es_ancora-up-test.conllu")
+raw <- readLines("es_ancora-up-test.conllu", encoding = "UTF-8")
 
-token_lines <- all_lines[all_lines != "" & !grepl("^#", all_lines)]
+good_lines <- raw[sapply(strsplit(raw, "\t"), length) == 14]
 
-df <- read.table(text = token_lines, sep = "\t", header = FALSE, fill = TRUE, quote = "")
+df <- read.table(text = good_lines,
+                 sep = "\t",
+                 header = FALSE,
+                 quote = "",
+                 fill = TRUE)
+nrow(df)
